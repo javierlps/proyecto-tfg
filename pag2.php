@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Practica 4.7 Formulatio Insertar</title>
+    <title>Inserción de Datos</title>
 </head>
 <body>
 <form action="pag2.php" method="post">
