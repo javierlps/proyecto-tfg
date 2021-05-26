@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Creación de Base de datos tablas</title>
+    <title>Creación Base datos y tabla</title>
 </head>
 <body>
 <?php

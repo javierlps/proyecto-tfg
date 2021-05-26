@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inserción de Datos</title>
+    <title>Inserción Datos</title>
 </head>
 <body>
 <form action="pag2.php" method="post">
