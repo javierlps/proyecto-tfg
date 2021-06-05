@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Pagina Inicio</title>
+    <link rel="icon" href="imagenes/docker.ico" type="image/ico">
+    <link href="estilo.css" type="text/css" rel="stylesheet"> 
 </head>
 <body>
-    <h1>Hola mundo</h1>
+    <h1>Acceso usuario</h1>
+    <hr size"2px" color="#000000;">
     
+<!--Formulario para loguin de usuario-->
+<form action=pag0.html method=get> 
+     <table width="200" border="0"> 
+       <tr> 
+         <th><h2>Usuario</h2></th> 
+         <td>
+           <input name="usuario" type="text" value="" size="20">
+        </td> 
+       </tr> 
+       <tr> 
+         <th><h2>Clave</h2></th> 
+         <td>
+           <input name="password" type="password" value="" size="20"> 
+         </td> 
+         <td> 
+           <input value="Entrar" type="submit"> 
+         </td> 
+       </tr> 
+       <tr> 
+         <th><input type="reset" name="Borrar" id="Borrar" value="Reset"></th> 
+       </tr> 
+     </table> 
+</form> 
 </body>
 </html>

@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Creación Base datos y tabla</title>
+    <link rel="icon" href="imagenes/bd.ico" type="image/ico"/>
 </head>
 <body>
 <?php
 // Ignorar mensajes de advertencia
 error_reporting(0);
 
-// Variables de datos para la conexión
-$servername="170.0.0.2";
+// Variables de datos para establecer la conexión
+$servername="10.0.0.20";
 $database="tienda";
 $unsername="root";
 $pass="root";
@@ -37,7 +38,9 @@ if(! $Db){
             die ("Ha ocurrido un error en la creacion de la base de datos: ");
             }
 }else{
-    echo "La base de datos SI existe\n";
+    echo "<h1>La base de datos SI existe</h1>
+    <hr size 2px color=blue;>
+    ";
     
     // Creamos la tabla  "productos" en la base de datos de "tienda"
     $sql="CREATE TABLE productos(
