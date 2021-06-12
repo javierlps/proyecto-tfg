@@ -1,0 +1,83 @@
+version: "3"
+# Creación de nueva red llamada: red_proyecto. Nombre de la red, IPAM, nombre de la sección de configuración, Config configuración de red (ip, máscara, gateway=170.0.0.1,...)
+networks:
+  red_proyecto:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+          gateway: 10.0.0.1
+
+# Sección que alojara o anidara todos los sercicios (BD mysql, servicio web y phpmyadmin).
+services:
+  # Nombre del servicio, que es la BD Mysql (Ejemplo de ejecución: docker run --name)
+  servicio_mysql:
+    # Imagen del servicio sepoarado por dos punto y su version
+    image: mysql:5.7
+    # Iniciar el servicio o contenedor al iniciar la maquina
+    restart: always
+    # Variables de entorno (1= Nombre de la base de datos inicial y la mas IMPORTANTE, clave del usuario root)
+    environment:
+      - MYSQL_DATABASE=proyecto
+      - MYSQL_ROOT_PASSWORD=root
+    # Mapeado de almacenamiento para que la informacion no desaparezca tras la eliminacion del contenedor
+    volumes:
+      # Montamos un volumen para MySQL para no perder los datos de bd
+      - ./volumenes/mysql:/var/lib/mysql
+    # Puerto expuesto para el servicio
+    expose:
+      - 3306
+    # Puerto de acceso al servicio separado por dos punto y puerto donde esta el servicio
+    ports:
+      - 3306:3306
+    # Red del contenedor, nombre de esta e ip.
+    networks:
+      red_proyecto:
+        ipv4_address: 10.0.0.20
+
+# Servicio phpmyadmin para manejar la administración de MySQL a través de páginas web
+  servicio_phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    networks:
+      red_proyecto:
+        ipv4_address: 10.0.0.30
+    environment:
+      # Define address/host name del servidor MySQL, usuario y contraseña para acceder.
+      PMA_HOST: servicio_mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+
+# Servicio web   
+  servicio_php-apache:
+    image: javierlps/apache-php-tfg:1.0
+    restart: always
+    volumes:
+      # Montamos nuestra web desde fuera en el directorio web del contenedor
+      - ./miweb/:/var/www/html
+    expose:
+      - 80
+    ports:
+      - 80:80
+    networks:
+      red_proyecto:
+        ipv4_address: 10.0.0.4
+
+# Servicio DNS Webmin
+  webmin-dns:
+    restart: always
+    image: javierlps/proyecto-tfg-webmin
+    expose:
+      - 10000
+    ports:
+      - 10000:10000
+    volumes:
+      - /srv/docker/bind:/data
+    networks:
+      red_proyecto:
+        ipv4_address: 10.0.0.10

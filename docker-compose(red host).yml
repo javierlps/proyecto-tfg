@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+# Servicio Mysql, base de datos.
+  servicio_mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=proyecto
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./volumenes/mysql:/var/lib/mysql
+    expose:
+      - 3306
+    # Puerto de acceso al servicio separado por dos punto y puerto donde esta el servicio
+#    ports:
+#      - 3306:3306
+    network_mode: "host"   
+
+# Servicio web   
+  servicio_php-apache:
+    image: javierlps/apache-php-tfg:1.0
+    restart: always
+    volumes:
+      - ./miweb/:/var/www/html
+    expose:
+      - 80
+#    ports:
+#      - 80:80
+    network_mode: "host"
+
+# Servicio DNS Webmin
+  webmin-dns:
+    restart: always
+    image: javierlps/proyecto-tfg-webmin
+    expose:
+      - 10000
+#    ports:
+#      - 10000:10000
+    volumes:
+      - /srv/docker/bind:/data
+    network_mode: "host"
+
