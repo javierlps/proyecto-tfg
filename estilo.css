@@ -1,0 +1,34 @@
+/* Cuerpo */
+   BODY {font-family: verdana,arial, sans-serif; font-size: 12pt;}
+   BODY {background-color: #F1F5C0}
+   
+/* Encabezados */
+   H1 {font-size: 20pt; font-weight: bold; color: #0066CC;}
+   H2 {font-size: 12pt; font-weight: bold; font-style: italic; color: black;}
+   H3 {font-size: 10pt; font-weight: bold; color: black;}
+   
+/* Formulario */
+   FORM.borde {border: 2px dotted #3d00ccce; padding: 0.8em 0.5em; width: 80%;}
+   FORM P {clear: left; margin: 0.2em; padding: 0.1em;}
+   FORM.borde {background:#f095b8}
+
+/* Tabla*/
+table.borde {
+   width:700pt;
+   font:normal 15px Arial;
+   text-align:center;
+   border-collapse:collapse;
+}
+table.borde th {
+   font:bold 15px Arial;
+   background-color:lightblue;
+   WIDTH:100px;
+}
+table.borde td {
+   WIDTH:100px;
+}
+
+/*Colores de fondo tabla*/
+   .fila1{background-color: #f095b8; }
+   .fila2{background-color: #3f9c78; }
+   
